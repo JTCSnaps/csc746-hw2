@@ -1,0 +1,25 @@
+# CMake build directories
+build/
+cmake-build-*/
+
+# Compiled object files and executables
+*.o
+*.out
+benchmark-basic
+benchmark-blocked
+benchmark-blas
+
+# Generated Slurm scripts and logs
+job-basic
+job-blocked
+job-blas
+job-*.o*
+job-*.e*
+
+# Project archive
+HW2.zip
+
+# OS and Editor files
+.DS_Store
+.vscode/
+.idea/
