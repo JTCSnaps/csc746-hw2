@@ -68,6 +68,9 @@ int main(int argc, char **argv)
 
     int n_problems = test_sizes.size();
 
+    FILE *fp = fopen("benchmark_results.csv", "w+");
+    fprintf(fp, "Poblem Size, MFLOP/s\n");
+
     /* For each test size */
     for (int n : test_sizes)
     {
@@ -120,6 +123,8 @@ int main(int argc, char **argv)
             std::cout << "MFLOP/s: " << mflops_per_sec << "\n";
 
             reference_dgemm(n, 1.0, Acopy, Bcopy, Ccopy);
+
+            fprintf(fp, "%d, %f\n", n, mflops_per_sec);
 
             // compare your C with that computed by BLAS
             if (check_accuracy(Ccopy, C, n * n) == false)

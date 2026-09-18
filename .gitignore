@@ -23,3 +23,9 @@ HW2.zip
 .DS_Store
 .vscode/
 .idea/
+
+# benchmark_results.csv
+*benchmark_results.csv
+
+#Default plot
+myplot.png

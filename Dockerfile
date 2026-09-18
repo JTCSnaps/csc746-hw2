@@ -17,6 +17,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip \
     tar \
     libopenblas-dev \
+    python3 \
+    python3-pip \
+    python3-matplotlib \
+    python3-pandas \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
