@@ -24,8 +24,5 @@ HW2.zip
 .vscode/
 .idea/
 
-# benchmark_results.csv
-*benchmark_results.csv
-
 #Default plot
 myplot.png
