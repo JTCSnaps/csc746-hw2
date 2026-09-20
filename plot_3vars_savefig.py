@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 
 plot_fname = "myplot.png"
 
-fname = "combined_mflops_data.csv"
+fname = "basic_blas_mflops_data.csv"
 df = pd.read_csv(fname, comment="#")
 print(df)
 
@@ -38,7 +38,7 @@ dgemm_blass = df[var_names[2]].values.tolist()
 
 plt.figure()
 
-plt.title("MFLOPS Problem")
+plt.title("Basic vs BLAS DGEMM Performance")
 
 xlocs = [i for i in range(len(problem_sizes))]
 
@@ -51,7 +51,7 @@ plt.plot(dgemm_blass, "b-x")
 #plt.yscale("log")
 
 plt.xlabel("Problem Size")
-plt.ylabel("MFLOPS/s")
+plt.ylabel("MFLOP/s")
 
 varNames = [var_names[1], var_names[2]]
 plt.legend(varNames, loc="best")
