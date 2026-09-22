@@ -8,7 +8,8 @@ const char* dgemm_desc = "Basic implementation, three-loop dgemm.";
  */
 
  //C= C + A*B == index = (i * N) + j
- //https://youtu.be/EmzdmqUWq3o?si=2SRX0HV93Y6wb0OZ&t=279
+ //In addition to class material, I referenced this video when building the below algorithm
+ //https://www.youtube.com/watch?v=EmzdmqUWq3o&t=279s
 void square_dgemm(int n, double* A, double* B, double* C) 
 {
    for (int i = 0; i < n; i++) {
