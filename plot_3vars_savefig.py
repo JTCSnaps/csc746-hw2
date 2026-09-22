@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 
 plot_fname = "myplot.png"
 
-fname = "basic_blas_mflops_data.csv"
+fname = "combined_blocked_mflops_data.csv"
 df = pd.read_csv(fname, comment="#")
 print(df)
 
@@ -33,19 +33,25 @@ print("var names =", var_names)
 # assumption: column order - 0=problem size, 1=blas time, 2=basic time
 
 problem_sizes = df[var_names[0]].values.tolist()
-dgemm_basic = df[var_names[1]].values.tolist()
-dgemm_blass = df[var_names[2]].values.tolist()
+blas = df[var_names[1]].values.tolist()
+blocked_size_2 = df[var_names[2]].values.tolist()
+blocked_size_16 = df[var_names[3]].values.tolist()
+blocked_size_32 = df[var_names[4]].values.tolist()
+blocked_size_64 = df[var_names[5]].values.tolist()
 
 plt.figure()
 
-plt.title("Basic vs BLAS DGEMM Performance")
+plt.title("Blocked vs BLAS DGEMM Performance")
 
 xlocs = [i for i in range(len(problem_sizes))]
 
 plt.xticks(xlocs, problem_sizes)
 
-plt.plot(dgemm_basic, "r-o")
-plt.plot(dgemm_blass, "b-x")
+plt.plot(blas, "r-o")
+plt.plot(blocked_size_2, "b-x")
+plt.plot(blocked_size_16, "g-^")
+plt.plot(blocked_size_32, "m-s")
+plt.plot(blocked_size_64, "c-d")
 
 #plt.xscale("log")
 #plt.yscale("log")
@@ -53,7 +59,7 @@ plt.plot(dgemm_blass, "b-x")
 plt.xlabel("Problem Size")
 plt.ylabel("MFLOP/s")
 
-varNames = [var_names[1], var_names[2]]
+varNames = [var_names[1], var_names[2], var_names[3], var_names[4], var_names[5]]
 plt.legend(varNames, loc="best")
 
 plt.grid(axis='both')
