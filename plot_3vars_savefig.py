@@ -19,9 +19,9 @@ Assumptions: developed and tested using Python version 3.8.8 on macOS 11.6
 import pandas as pd
 import matplotlib.pyplot as plt
 
-plot_fname = "myplot.png"
+plot_fname = "basic_v_blas.png"
 
-fname = "combined_blocked_mflops_data.csv"
+fname = "combined_mflops_data.csv"
 df = pd.read_csv(fname, comment="#")
 print(df)
 
@@ -33,33 +33,30 @@ print("var names =", var_names)
 # assumption: column order - 0=problem size, 1=blas time, 2=basic time
 
 problem_sizes = df[var_names[0]].values.tolist()
-blas = df[var_names[1]].values.tolist()
-blocked_size_2 = df[var_names[2]].values.tolist()
-blocked_size_16 = df[var_names[3]].values.tolist()
-blocked_size_32 = df[var_names[4]].values.tolist()
-blocked_size_64 = df[var_names[5]].values.tolist()
+basic = df[var_names[1]].values.tolist()
+blas = df[var_names[2]].values.tolist()
+
+
 
 plt.figure()
 
-plt.title("Blocked vs BLAS DGEMM Performance")
+plt.title("Basic vs BLAS DGEMM Performance")
 
 xlocs = [i for i in range(len(problem_sizes))]
 
 plt.xticks(xlocs, problem_sizes)
 
-plt.plot(blas, "r-o")
-plt.plot(blocked_size_2, "b-x")
-plt.plot(blocked_size_16, "g-^")
-plt.plot(blocked_size_32, "m-s")
-plt.plot(blocked_size_64, "c-d")
+plt.plot(basic, "r-o")
+plt.plot(blas, "b-x")
+
 
 #plt.xscale("log")
 #plt.yscale("log")
 
-plt.xlabel("Problem Size")
+plt.xlabel("Test Size")
 plt.ylabel("MFLOP/s")
 
-varNames = [var_names[1], var_names[2], var_names[3], var_names[4], var_names[5]]
+varNames = [var_names[1], var_names[2]]
 plt.legend(varNames, loc="best")
 
 plt.grid(axis='both')
